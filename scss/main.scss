@@ -6,6 +6,19 @@ $primary-text-color:#7C6A0A;
 $font-stack: 'IBM Plex Sans' , sans-serif; 
 $paragraph-size: 1.5em;
 
+@mixin flexCenter ($direction, $content, $align){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $content;
+    align-items: $align;
+}
+@mixin buttonStyle {
+    button {
+        background: none;
+        border-style: none;
+    }
+}
+
 body {
     margin: 0px;
     padding: 0px;
@@ -18,9 +31,7 @@ nav {
     height: 100px;
     padding: 15px;
     color: $primary-text-color;
-    display: flex;
-    justify-content: space-between;
-    align-items: center ;
+    @include flexCenter(row, space-between, center);
     p {
         font-size: $paragraph-size;
         padding-left: 30px;
@@ -28,10 +39,7 @@ nav {
     .icons {
         display: flex;
         gap: 15px;
-        button {
-            background: none;
-            border-style: none;
-        }
+        @include buttonStyle()
     }
 }
 
@@ -39,11 +47,9 @@ article {
     color: $primary-text-color;
     width: auto;
     padding: 70px 45px 0 45px;
-    display: flex;
-    justify-content: space-between;
+    @include flexCenter(row, space-between ,center );
     .impac-setion {
-        display: flex;
-        flex-direction: column;
+        @include flexCenter(column, space-evenly , flex-start );
         gap: 25px;
         padding-top: 50px;
     }
@@ -55,14 +61,17 @@ article {
     p {
         font-size: $paragraph-size;
     }
+    @include buttonStyle;
     button {
         width: 12vw;
         padding: 20px;
         background-color: $quaternary-color;
-        border-style: none;
         border-radius: 35px;
         color: white;
         font-size: 1em;
+        &:hover {
+            transform: scale(1.1);
+        }
     }
     img {
         width: 25vw;
@@ -84,12 +93,10 @@ section {
             padding-bottom: 60px;
         }
         .card-section {
-            display: flex;
+           @include flexCenter(row, space-evenly, center );
             flex-wrap: wrap;
             width: auto;
             height: auto;
-            justify-content: center;
-            align-items: center;
             column-gap: 200px;
             row-gap: 80px;
         }
@@ -134,8 +141,72 @@ section {
         }
     }
 }
+.about-us{
+    padding-bottom: 60px;
+    h2 {
+        font-weight: bold;
+        padding-bottom: 60px;
+    }
+    .mission-section {
+        @include flexCenter(row, space-evenly, center);
+        .earth, .innovation {
+            width: 30vw;
+            display: flex;
+            gap: 40px;
+            color: #E86424;
+            img {
+                object-fit: contain;
+            }
+            p {
+                font-size: $paragraph-size;
+                text-align: center;
+            }
+        }
+
+    }
+}
+.gallery {
+    h2 {
+        font-weight: bold;
+        padding-bottom: 60px;
+    }
+    .gallery-images {
+        @include flexCenter(row, space-between ,center );
+        img {
+            width: 28vw;
+            height: 45vh;
+            object-fit: cover;
+            object-position: 5px 35%;
+            border-radius: 16px;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
+.location {
+    color: #e86424;
+    h2 {
+        padding: 60px 0;
+    }
+    .map {
+        @include flexCenter(row, center, center );
+        padding-bottom: 50px;
+    }
+    h3, p{
+        font-size: $paragraph-size;
+    }
+}
 footer {
+    box-sizing: border-box;
     background-color: $quaternary-color; 
     width: 100%;
     height: 250px;
+    color: white;
+    padding: 20px ;
+    .social-media {
+        @include flexCenter(row, center ,center);
+        gap: 40px; 
+    
+    }
 }
